@@ -1,7 +1,7 @@
 {
     "id": "ccodling.io.supernova.css",
     "name": "CSS",
-    "description": "CSS token and style exporter",
+    "description": "NAVEX CSS token and style exporter",
     "author": "Ivan Terpugov & Jiri Trecak",
     "organization": "Supernova",
     "homepage": "https://supernova.io",
