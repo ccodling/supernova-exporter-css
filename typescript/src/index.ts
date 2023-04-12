@@ -16,7 +16,7 @@
     }
 
     // Create "sentence" separated by spaces so we can camelcase it all
-    let sentence = segments.join(" ");
+    let sentence = segments.join("-");
 
     // camelcase string from all segments
     //  sentence = sentence
