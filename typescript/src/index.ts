@@ -31,6 +31,8 @@
       sentence = '_' + sentence;
     }
 
+    sentence = sentence.replace(/[A-Z]/g, m => "-" + m.toLowerCase());
+
     return sentence;
   }
 );
