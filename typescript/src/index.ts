@@ -16,14 +16,12 @@
     }
 
     // Create "sentence" separated by spaces so we can camelcase it all
-    let sentence = segments.join("-");
+    let sentence = segments.join(" ");
 
     // camelcase string from all segments
-    //  sentence = sentence
-    //   .toLowerCase()
-    //   .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
-
-    sentence = sentence.replace(/[A-Z]/g, m => "-" + m.toLowerCase());
+     sentence = sentence
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
     
     // only allow letters, digits, underscore and hyphen
     sentence = sentence.replace(/[^a-zA-Z0-9_-]/g, '_')
