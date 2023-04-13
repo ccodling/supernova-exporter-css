@@ -17,6 +17,16 @@
         "pulsar": "1.0.0",
         "supernova": "1.0.0"
     },
+    "contributes": {
+        "configuration": [
+            {
+                "default": "",
+                "key": "varPrefix",
+                "label": "Prefix for all generated variables",
+                "type": "string"
+            }
+        ]
+    },
     "tags": [
         "CSS",
         "Tokens",

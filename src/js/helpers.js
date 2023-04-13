@@ -3,7 +3,7 @@
  */
 Pulsar.registerFunction(
     "readableVariableName",
-    function(token, tokenGroup, prefix) {
+    function(token, tokenGroup, prefix, varPrefix) {
         // Create array with all path segments and token name at the end
         const segments = [...tokenGroup.path];
         if (!tokenGroup.isRoot) {
@@ -15,7 +15,11 @@ Pulsar.registerFunction(
             segments.unshift(prefix);
         }
 
-        // Create "sentence" separated by spaces so we can camelcase it all
+        if (varPrefix && varPrefix.length > 0) {
+            segments.unshift(varPrefix);
+        }
+
+        // Create "sentence" separated by spaces so we can kebab-case it all
         let sentence = segments.join(" ");
 
         // camelcase string from all segments
