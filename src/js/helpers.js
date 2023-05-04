@@ -8,7 +8,7 @@ Pulsar.registerFunction(
     const segments = [...tokenGroup.path];
     const prefix = "nds"
     if (!tokenGroup.isRoot) {
-      segments.push(tokenGroup.name)
+      //segments.push(tokenGroup.name)
     }
 
     segments.push(token.name);
