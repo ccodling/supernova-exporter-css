@@ -35,5 +35,5 @@ Rendered as:
 {[ case "Gradient" ]}{[ prefix = behavior.gradientTokenPrefix /]}  
 {[ default ]}{[ prefix = "" /]}  
 {[/]}
-{[ let tokenName = readableVariableName(context, tokenGroup, prefix) /]}
+{[ let tokenName = readableVariableName(context, tokenGroup) /]}
 {{ tokenName }}
