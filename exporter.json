@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "homepage": "https://supernova.io",
     "source_dir": "src",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "usesBrands": true,
     "tags": [
         "CSS",
@@ -25,9 +25,9 @@
     "contributes": {
         "configuration": [
             {
-                "default": "",
-                "key": "classPrefix",
-                "label": "Prefix for all generated classes",
+                "default": "cc",
+                "key": "tokenPrefix",
+                "label": "Prefix for all generated tokens",
                 "type": "string"
             }
         ]
