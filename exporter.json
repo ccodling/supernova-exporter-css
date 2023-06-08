@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "homepage": "https://supernova.io",
     "source_dir": "src",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "usesBrands": true,
     "tags": [
         "CSS",
@@ -25,16 +25,10 @@
     "contributes": {
         "configuration": [
             {
-                "default": true,
-                "key": "generateColors",
-                "label": "Generate color list page",
-                "type": "boolean"
-            },
-            {
-                "default": true,
-                "key": "generateBorders",
-                "label": "Generate border list page",
-                "type": "boolean"
+                "default": "",
+                "key": "classPrefix",
+                "label": "Prefix for all generated classes",
+                "type": "string"
             }
         ]
     }
