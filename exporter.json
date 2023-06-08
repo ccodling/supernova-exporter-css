@@ -8,6 +8,11 @@
     "source_dir": "src",
     "version": "1.3.0",
     "usesBrands": true,
+    "tags": [
+        "CSS",
+        "Tokens",
+        "Styles"
+    ],
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -17,9 +22,20 @@
         "pulsar": "1.0.0",
         "supernova": "1.0.0"
     },
-    "tags": [
-        "CSS",
-        "Tokens",
-        "Styles"
-    ]
+    "contributes": {
+        "configuration": [
+            {
+                "default": true,
+                "key": "generateColors",
+                "label": "Generate color list page",
+                "type": "boolean"
+            },
+            {
+                "default": true,
+                "key": "generateBorders",
+                "label": "Generate border list page",
+                "type": "boolean"
+            }
+        ]
+    }
 }
