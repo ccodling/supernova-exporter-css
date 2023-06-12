@@ -1,19 +1,17 @@
 /**
  * Convert group name, token name and possible prefix into kebab-case string, joining everything together
  */
-Pulsar.registerFunction(
-  "readableVariableName",
+Pulsar.registerFunction("readableVariableName",
   function(token, tokenGroup) {
     // Create array with all path segments and token name at the end
     const segments = [...tokenGroup.path];
-    //const prefix = "nds"
+    const prefix = "nds"
     if (!tokenGroup.isRoot) {
       //segments.push(tokenGroup.name)
     }
 
     segments.push(token.name);
-
-    segments.unshift(Pulsar.tokenPrefix);
+    segments.unshift(prefix);
 
     // Create "sentence" separated by spaces
     let sentence = segments.join(" ");
