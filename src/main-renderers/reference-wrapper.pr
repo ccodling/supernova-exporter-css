@@ -21,5 +21,4 @@ Note: Token is passed as `context` property because it is injected
 {[ if !context.referencedToken ]}
 {{ #body }}
 {[ else ]}
-{{ #body }}
-{[/]}
+var(--{[ inject "rendered-name" context context.referencedToken /]}){[/]}

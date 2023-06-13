@@ -1,7 +1,7 @@
 /**
- * Convert group name, token name and possible prefix into camelCased string, joining everything together
+ * Convert group name, token name and possible prefix into kebab-case string, joining everything together
  */
- Pulsar.registerFunction("readableVariableName",
+Pulsar.registerFunction("readableVariableName",
   function(token, tokenGroup, prefix) {
     // Create array with all path segments and token name at the end
     const segments = [...tokenGroup.path];
@@ -38,8 +38,25 @@
   }
 );
 
+function getGroupNameFromOriginName(originName) {
+  return originName.substr(0, originName.indexOf('/')).trim().toLowerCase()
+}
 
-function findAliases(token, allTokens){
+function getGroups(allTokens) {
+  let allGroups = allTokens.map(token => getGroupNameFromOriginName(token.origin.name))
+  let uniqueGroups = [...new Set(allGroups)]
+  return uniqueGroups
+}
+
+Pulsar.registerFunction("getGroups", getGroups)
+
+function getTokensByGroup(allTokens, group) {
+  return allTokens.filter(token => token.origin.name.substr(0, getGroupNameFromOriginName(token.origin.name) === group))
+}
+
+Pulsar.registerFunction("getTokensByGroup", getTokensByGroup)
+
+function findAliases(token, allTokens) {
   let aliases = allTokens.filter(t => t.value.referencedToken && t.value.referencedToken.id === token.id)
   for (const t of aliases) {
     aliases = aliases.concat(findAliases(t, allTokens))
@@ -50,12 +67,12 @@ function findAliases(token, allTokens){
 Pulsar.registerFunction("findAliases", findAliases)
 
 Pulsar.registerFunction("gradientAngle", function(from, to) {
-    var deltaY = (to.y - from.y);
-    var deltaX = (to.x - from.x);
-    var radians = Math.atan2(deltaY, deltaX); 
-    var result = radians * 180 / Math.PI; 
-    result = result + 90; 
-    return  ((result < 0) ? (360 + result) : result) % 360;
+  var deltaY = (to.y - from.y);
+  var deltaX = (to.x - from.x);
+  var radians = Math.atan2(deltaY, deltaX);
+  var result = radians * 180 / Math.PI;
+  result = result + 90;
+  return ((result < 0) ? (360 + result) : result) % 360;
 })
 
 /**
@@ -72,19 +89,16 @@ Pulsar.registerPayload("behavior", {
 });
 
 
-/** Describe complex shadow token */
-Pulsar.registerFunction("shadowDescription", function (shadowToken) {
-  
-  let connectedShadow = "transparent"
-  if (shadowToken.shadowLayers) {
-    connectedShadow = shadowToken.shadowLayers.reverse().map((shadow) => {
-        return shadowTokenValue(shadow)
-    }).join(", ")
-  } else {
-    return shadowTokenValue(shadowToken)
-  }
 
-  return connectedShadow ?? ""
+/** Describe complex shadow token */
+Pulsar.registerFunction("shadowDescription", function(shadowToken) {
+
+  let connectedShadow = shadowToken.shadowLayers?.reverse().map((shadow) => {
+    return shadowTokenValue(shadow)
+  })
+    .join(", ")
+
+  return connectedShadow
 })
 
 /** Convert complex shadow value to CSS representation */
@@ -98,8 +112,8 @@ function shadowTokenValue(shadowToken) {
 }
 
 
-function getValueWithCorrectUnit(value) {
-  if (value === 0) {
+function getValueWithCorrectUnit(value, unit, forceUnit) {
+  if (value === 0 && forceUnit !== true) {
     return `${value}`
   } else {
     // todo: add support for other units (px, rem, em, etc.)
@@ -133,7 +147,7 @@ function getFormattedRGB(colorValue) {
   if (colorValue.a === 0) {
     return `rgb(${colorValue.r},${colorValue.g},${colorValue.b})`
   } else {
-    const opacity = Math.round((colorValue.a/255) * 100) / 100;
+    const opacity = Math.round((colorValue.a / 255) * 100) / 100;
     return `rgba(${colorValue.r},${colorValue.g},${colorValue.b},${opacity})`
-  } 
+  }
 }
