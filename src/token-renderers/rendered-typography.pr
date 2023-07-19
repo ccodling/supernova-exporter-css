@@ -52,7 +52,7 @@ Rendered as:
 *}
 
 {[ let fontStyle = "normal" /]}
-{[ let baseSizeToken = "--nds-font-size-200" /]}
+{[ let baseSizeToken = "--cds-font-size-200" /]}
 {[ if ds.isFontItalic(context.font) ]}
   {[ fontStyle = "italic" /]}
 {[/]}

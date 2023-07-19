@@ -5,7 +5,7 @@
   function(token, tokenGroup, prefix) {
     // Create array with all path segments and token name at the end
     const segments = [...tokenGroup.path];
-    const namespace = "nds"
+    const namespace = "cds"
     if (!tokenGroup.isRoot) {
       //segments.push(tokenGroup.name)
     }
@@ -33,7 +33,7 @@
       sentence = '_' + sentence;
     }
 
-    console.log("---" + sentence)
+    console.log("---> " + sentence)
     return sentence;
   }
 );
