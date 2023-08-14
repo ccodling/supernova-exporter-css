@@ -24,7 +24,8 @@
     // string from all segments
     sentence = sentence
       .toLowerCase()
-      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr)
+      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => "-" + chr)
+      .substring(1);
 
     // only allow letters, digits, underscore and hyphen
     sentence = sentence.replace(/[^a-zA-Z0-9_-]/g, '_')
@@ -34,7 +35,7 @@
       sentence = '_' + sentence;
     }
 
-    //console.log("---> " + sentence)
+    console.log("----> " + sentence)
     return sentence;
   }
 );
