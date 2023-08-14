@@ -1,28 +1,30 @@
 /**
  * Convert group name, token name and possible prefix into camelCased string, joining everything together
  */
- Pulsar.registerFunction(
-  "readableVariableName",
-  function (token, tokenGroup, prefix) {
+ Pulsar.registerFunction("readableVariableName",
+  function(token, tokenGroup, prefix) {
     // Create array with all path segments and token name at the end
     const segments = [...tokenGroup.path];
+    const namespace = ""
     if (!tokenGroup.isRoot) {
-      segments.push(tokenGroup.name)
+      //segments.push(tokenGroup.name)
     }
+
+    // if (prefix && prefix.length > 0) {
+    //   segments.unshift(prefix);
+    // }
+
     segments.push(token.name);
+    segments.unshift(namespace);
 
-    if (prefix && prefix.length > 0) {
-      segments.unshift(prefix);
-    }
-
-    // Create "sentence" separated by spaces so we can camelcase it all
+    // Create "sentence" separated by spaces
     let sentence = segments.join(" ");
 
-    // camelcase string from all segments
-     sentence = sentence
+    // string from all segments
+    sentence = sentence
       .toLowerCase()
-      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
-    
+      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => "-" + chr)
+
     // only allow letters, digits, underscore and hyphen
     sentence = sentence.replace(/[^a-zA-Z0-9_-]/g, '_')
 
@@ -31,6 +33,7 @@
       sentence = '_' + sentence;
     }
 
+    console.log("---> " + sentence)
     return sentence;
   }
 );
