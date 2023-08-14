@@ -6,8 +6,9 @@
     "organization": "Cory Codling",
     "homepage": "https://supernova.io",
     "source_dir": "src",
-    "version": "0.3.0",
-    "usesBrands": true,
+    "version": "0.3.1",
+    "usesBrands": false,
+    "usesThemes": true,
     "config": {
         "sources": "sources.json",
         "output": "output.json",
