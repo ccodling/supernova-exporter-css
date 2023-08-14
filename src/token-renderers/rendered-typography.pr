@@ -60,7 +60,7 @@ Rendered as:
 font-family: "{{ context.font.family }}";
 font-style: {{ fontStyle }};
 font-weight: {{ ds.fontWeight(context.font) }};
-font-size: calc({[ inject "rendered-measure" context context.fontSize /]} / {{baseSizeToken}} * 1em);
+font-size: {[ inject "rendered-measure" context context.fontSize /]};
 {[ if context.lineHeight ]}
 line-height: {[ inject "rendered-measure" context context.lineHeight /]};
 {[/]}
