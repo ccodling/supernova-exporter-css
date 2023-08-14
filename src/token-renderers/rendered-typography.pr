@@ -53,7 +53,6 @@ Rendered as:
 *}
 
 {[ let fontStyle = "normal" /]}
-{[ let baseSizeToken = 16 /]}
 {[ if ds.isFontItalic(context.font) ]}
   {[ fontStyle = "italic" /]}
 {[/]}
