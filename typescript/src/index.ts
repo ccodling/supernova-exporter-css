@@ -5,7 +5,7 @@
   function(token, tokenGroup, prefix) {
     // Create array with all path segments and token name at the end
     const segments = [...tokenGroup.path];
-    const namespace = ""
+    //const namespace = ""
     if (!tokenGroup.isRoot) {
       //segments.push(tokenGroup.name)
     }
@@ -15,7 +15,7 @@
     // }
 
     segments.push(token.name);
-    segments.unshift(namespace);
+    //segments.unshift(namespace);
 
     // Create "sentence" separated by spaces
     let sentence = segments.join(" ");
