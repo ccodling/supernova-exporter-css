@@ -33,7 +33,7 @@
       sentence = '_' + sentence;
     }
 
-    console.log("---> " + sentence)
+    //console.log("---> " + sentence)
     return sentence;
   }
 );
