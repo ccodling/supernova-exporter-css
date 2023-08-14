@@ -6,7 +6,7 @@
     "organization": "NAVEX",
     "homepage": "https://supernova.io",
     "source_dir": "src",
-    "version": "0.3.2",
+    "version": "0.0.1",
     "usesBrands": true,
     "usesThemes": true,
     "config": {
