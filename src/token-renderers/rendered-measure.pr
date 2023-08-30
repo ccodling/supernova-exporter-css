@@ -9,7 +9,7 @@ Note: Value is passed as `context` property because it is injected
 
 {
   "context": {
-    "unit": "Pixels" | "Points" | "Percent" | "Ems",
+    "unit": "Pixels" | "Points" | "Percent" | "Rems" | "Ems",
     "measure": double
     "referencedToken": Measure | null
   }
@@ -23,8 +23,10 @@ Note: Value is passed as `context` property because it is injected
 {[ unit = "pt"/]}
 {[ case "Percent"]}
 {[ unit = "%"/]}
+{[ case "Rems"]}
+{[ unit = "rem"/]}
 {[ case "Ems"]}
-{[ unit = "em"/]}
+{[ unit = "rem"/]}
 {[/]}
 {{ context.measure }}{{ unit }}
 {[/]}

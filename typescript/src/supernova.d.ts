@@ -34,7 +34,7 @@ declare global {
 
   type TextDecoration = 'None' | 'Underline' | 'Strikethrough'
 
-  type Unit = 'Pixels' | 'Points' | 'Percent' | 'Ems'
+  type Unit = 'Pixels' | 'Points' | 'Percent' | 'Rems' |'Ems'
 
   type BorderPosition = 'Inside' | 'Center' | 'Outside'
 
