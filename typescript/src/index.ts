@@ -1,48 +1,37 @@
 /**
  * Convert group name, token name and possible prefix into camelCased string, joining everything together
  */
-Pulsar.registerFunction(
-  "readableVariableName",
-  function (token, tokenGroup, prefix) {
-    // Create array with all path segments and token name at the end
-    const segments = [""];
-    const namespace = "ncds";
-    if (!tokenGroup.isRoot || !tokenGroup.isNonVirtualRoot) {
-      //segments.push(tokenGroup.name)
-    }
-
-    if (prefix && prefix.length > 0) {
-      //segments.unshift(prefix);
-    }
-
-    segments.push(token.name);
-    segments.unshift(namespace);
-
-    // Create "sentence" separated by spaces
-    let sentence = segments.join(" ");
-
-    // string from all segments
-    sentence = sentence
-      .toLowerCase()
-      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => "-" + chr);
-
-    // only allow letters, digits, underscore and hyphen
-    sentence = sentence.replace(/[^a-zA-Z0-9_-]/g, '_')
-
-    // prepend underscore if it starts with digit 
-    if (/^\d/.test(sentence)) {
-      sentence = '_' + sentence;
-    }
-
-    console.log(" ----> " + sentence)
-    return sentence;
+Pulsar.registerFunction("readableVariableName", function (token, tokenGroup, prefix) {
+  // Create array with all path segments and token name at the end
+  const segments = [...tokenGroup.path];
+  if (!tokenGroup.isRoot || !tokenGroup.isNonVirtualRoot) {
+    segments.push(tokenGroup.name);
   }
-);
+  segments.push(token.name);
+
+  if (prefix && prefix.length > 0) {
+    segments.unshift(prefix);
+  }
+
+  // Create "sentence" separated by spaces so we can camelcase it all
+  let sentence = segments.join(" ");
+
+  // camelcase string from all segments
+  sentence = sentence.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+
+  // only allow letters, digits, underscore and hyphen
+  sentence = sentence.replace(/[^a-zA-Z0-9_-]/g, "_");
+
+  // prepend underscore if it starts with digit
+  if (/^\d/.test(sentence)) {
+    sentence = "_" + sentence;
+  }
+
+  return sentence;
+});
 
 function findAliases(token, allTokens) {
-  let aliases = allTokens.filter(
-    (t) => t.value.referencedToken && t.value.referencedToken.id === token.id
-  );
+  let aliases = allTokens.filter((t) => t.value.referencedToken && t.value.referencedToken.id === token.id);
   for (const t of aliases) {
     aliases = aliases.concat(findAliases(t, allTokens));
   }
@@ -92,18 +81,14 @@ Pulsar.registerFunction("shadowDescription", function (shadowToken) {
 
 /** Convert complex shadow value to CSS representation */
 function shadowTokenValue(shadowToken) {
-  var blurRadius = getValueWithCorrectUnit(
-    nonNegativeValue(shadowToken.value.radius.measure)
-  );
+  var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.value.radius.measure));
   var offsetX = getValueWithCorrectUnit(shadowToken.value.x.measure);
   var offsetY = getValueWithCorrectUnit(shadowToken.value.y.measure);
   var spreadRadius = getValueWithCorrectUnit(shadowToken.value.spread.measure);
 
   return `${
     shadowToken.value.type === "Inner" ? "inset " : ""
-  }${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedRGB(
-    shadowToken.value.color
-  )}`;
+  }${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedRGB(shadowToken.value.color)}`;
 }
 
 function getValueWithCorrectUnit(value) {
@@ -132,8 +117,6 @@ function measureTypeIntoReadableUnit(type) {
       return "px";
     case "Percent":
       return "%";
-    case "Rems":
-      return "rem"
     case "Ems":
       return "em";
   }
