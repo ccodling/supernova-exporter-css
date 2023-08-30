@@ -1,26 +1,22 @@
 {
-    "id": "io.supernova.css",
+  "id": "io.supernova.css",
     "name": "NAVEX CSS Exporter",
     "description": "CSS token and style exporter -- forked from Supernova",
     "author": "Cory Codling",
     "organization": "NAVEX",
-    "homepage": "https://supernova.io",
-    "source_dir": "src",
-    "version": "0.0.1",
-    "usesBrands": true,
+  "homepage": "https://supernova.io",
+  "source_dir": "src",
+    "version": "0.0.2",
+  "usesBrands": true,
     "usesThemes": true,
-    "config": {
-        "sources": "sources.json",
-        "output": "output.json",
-        "js": "src/js/helpers.js"
-    },
-    "engines": {
-        "pulsar": "1.0.0",
-        "supernova": "1.0.0"
-    },
-    "tags": [
-        "CSS",
-        "Tokens",
-        "Styles"
-    ]
+  "config": {
+    "sources": "sources.json",
+    "output": "output.json",
+    "js": "src/js/helpers.js"
+  },
+  "engines": {
+    "pulsar": "1.0.0",
+    "supernova": "1.0.0"
+  },
+  "tags": ["CSS", "Tokens", "Styles"]
 }
